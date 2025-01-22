@@ -1,6 +1,9 @@
-# Set variables for file paths
-OUTPUT_DIR="/home/ahad/codes/logs"   # Replace with your desired directory
+#!/bin/bash
 
+# Set variables for file paths
+OUTPUT_DIR="/home/ahad/codes/logs"  # Replace with your desired directory
+
+# Ensure the output directory exists
 mkdir -p "$OUTPUT_DIR"
 
 # Generate timestamp
@@ -16,3 +19,18 @@ gzip "$OUTPUT_DIR/$FILE_NAME"
 
 # Confirm completion
 echo "Message has been saved and compressed into $GZIP_NAME in $OUTPUT_DIR"
+
+# Keep only files created at 5-minute intervals
+CURRENT_MIN=$(date "+%M")
+
+# Check if the current minute is divisible by 5
+if (( CURRENT_MIN % 5 == 0 )); then
+  echo "Keeping file for minute $CURRENT_MIN"
+else
+  echo "Deleting intermediate file for minute $CURRENT_MIN"
+  rm -f "$OUTPUT_DIR/$GZIP_NAME"
+fi
+
+# Cleanup: Keep only the last 5 files matching the naming pattern
+cd "$OUTPUT_DIR" || exit
+ls -tp life_message_*.txt.gz | tail -n +6 | xargs -I {} rm -- {}
