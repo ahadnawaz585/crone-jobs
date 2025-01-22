@@ -20,17 +20,16 @@ gzip "$OUTPUT_DIR/$FILE_NAME"
 # Confirm completion
 echo "Message has been saved and compressed into $GZIP_NAME in $OUTPUT_DIR"
 
-# Keep only files created at 5-minute intervals
+# Cleanup: Keep only files created at 5-minute intervals
 CURRENT_MIN=$(date "+%M")
 
-# Check if the current minute is divisible by 5
 if (( CURRENT_MIN % 5 == 0 )); then
-  echo "Keeping file for minute $CURRENT_MIN"
+  echo "File for minute $CURRENT_MIN is being kept."
 else
-  echo "Deleting intermediate file for minute $CURRENT_MIN"
+  echo "File for minute $CURRENT_MIN is being deleted."
   rm -f "$OUTPUT_DIR/$GZIP_NAME"
 fi
 
-# Cleanup: Keep only the last 5 files matching the naming pattern
+# Final cleanup: Retain only the last 5 gzipped files
 cd "$OUTPUT_DIR" || exit
 ls -tp life_message_*.txt.gz | tail -n +6 | xargs -I {} rm -- {}
