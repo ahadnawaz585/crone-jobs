@@ -1,7 +1,7 @@
-
+#!/bin/bash
 
 # Set variables for file paths
-OUTPUT_DIR=""   # Replace with your desired directory
+OUTPUT_DIR="/d/development/logs"   # Replace with your desired directory
 
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S") 
 FILE_NAME="life_message_${TIMESTAMP}.txt"
