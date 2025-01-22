@@ -6,8 +6,8 @@ OUTPUT_DIR="/home/ahad/codes/logs"   # Replace with your desired directory
 # Ensure the output directory exists
 mkdir -p "$OUTPUT_DIR"
 
-# Delete files older than 5 minutes
-find "$OUTPUT_DIR" -name "life_message_*.txt.gz" -mmin +5 -exec rm {} \;
+# Delete files created within the past 5 minutes
+find "$OUTPUT_DIR" -name "life_message_*.txt.gz" -mmin -5 -delete
 
 # Generate a new timestamp
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
@@ -21,4 +21,4 @@ echo "This is a message about life: Stay positive, keep learning!" > "$OUTPUT_DI
 gzip "$OUTPUT_DIR/$FILE_NAME"
 
 # Confirm completion
-echo "Deleted files older than 5 minutes and created a new file: $GZIP_NAME in $OUTPUT_DIR"
+echo "Deleted files created in the last 5 minutes and created a new file: $GZIP_NAME in $OUTPUT_DIR"
