@@ -26,8 +26,8 @@ if (( MINUTE == 0 && HOUR % 3 == 0 )); then
   FILES=("$OUTPUT_DIR"/*.gz)
 
   for FILE in "${FILES[@]}"; do
-    FILE_MINUTE=$(date -r "$FILE" +"%M")
-    FILE_HOUR=$(date -r "$FILE" +"%H")
+    FILE_MINUTE=$(date -r "$FILE" +"%-M")
+    FILE_HOUR=$(date -r "$FILE" +"%-H")
     if (( FILE_MINUTE != 0 || FILE_HOUR % 3 != 0 )); then
       rm "$FILE"
       echo "[$(date +"%Y-%m-%d %H:%M:%S")] Deleted: $FILE (Hour not a multiple of 3 or Minute not 00)" >> "$LOG_FILE"
@@ -37,7 +37,7 @@ elif (( MINUTE == 0 )); then
   FILES=("$OUTPUT_DIR"/*.gz)
 
   for FILE in "${FILES[@]}"; do
-    FILE_MINUTE=$(date -r "$FILE" +"%M")
+    FILE_MINUTE=$(date -r "$FILE" +"%-M")
     if (( FILE_MINUTE != 0 )); then
       rm "$FILE"
       echo "[$(date +"%Y-%m-%d %H:%M:%S")] Deleted: $FILE (Minute not 00)" >> "$LOG_FILE"
