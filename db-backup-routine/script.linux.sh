@@ -12,10 +12,10 @@ DB_PASSWORD='' # Provide the password here
 DB_HOST=""
 DB_PORT=""
 
-FILE_NAME="database_dump_${TIMESTAMP}.sql"
-GZIP_NAME="database_dump_${TIMESTAMP}.sql.gz"
+FILE_NAME="bss_upvccloud_dump_${TIMESTAMP}.sql"
+GZIP_NAME="bss_upvccloud_dump_${TIMESTAMP}.sql.gz"
 export PGPASSWORD="$DB_PASSWORD"
-pg_dump -h "$DB_HOST" -U "$DB_USER" -p "$DB_PORT" "$DB_NAME" > "$OUTPUT_DIR/$FILE_NAME"
+pg_dump -h "$DB_HOST" -U "$DB_USER" --no-owner -p "$DB_PORT" "$DB_NAME" > "$OUTPUT_DIR/$FILE_NAME"
 
 unset PGPASSWORD
 
