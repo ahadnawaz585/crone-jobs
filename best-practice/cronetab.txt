@@ -1,0 +1,22 @@
+# PostgreSQL Database Backup Cron Jobs
+
+# Path to backup scripts
+SCRIPT_PATH="/home/deploy/codes/db_backups"
+
+# Hourly backup - Runs at the beginning of every hour
+0 * * * * $SCRIPT_PATH/hourly_backup.sh
+
+# Daily backup - Runs at midnight every day
+0 0 * * * $SCRIPT_PATH/daily_backup.sh
+
+# Weekly backup - Runs at midnight on Sunday (day 0 in cron)
+0 0 * * 0 $SCRIPT_PATH/weekly_backup.sh
+
+# Monthly backup - Runs at midnight on the first day of each month
+0 0 1 * * $SCRIPT_PATH/monthly_backup.sh
+
+# Yearly backup - Runs at midnight on January 1st
+0 0 1 1 * $SCRIPT_PATH/yearly_backup.sh
+
+# Cleanup routine - Runs every 6 hours
+0 */6 * * * $SCRIPT_PATH/cleanup_backups.sh
