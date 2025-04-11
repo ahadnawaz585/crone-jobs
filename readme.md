@@ -1,5 +1,5 @@
 
-# 🗃️ Crone Jobs Practice - Automated Backup Scripts
+# 🗃️ cron Jobs Practice - Automated Backup Scripts
 
 This repository is a structured collection of bash scripts for scheduling and managing backups using **cron jobs** in Unix-based systems. It includes organized folders for best practices, test routines, and real-world script variations.
 
@@ -8,13 +8,13 @@ This repository is a structured collection of bash scripts for scheduling and ma
 ## 📁 Repository Structure
 
 ```bash
-crone-jobs/
+cron-jobs/
 │
 ├── best-practice/          # ✅ Recommended setup with .env and modular scripts
 ├── db-backup-routine/      # Database-specific backup experiments
 ├── echo-file/              # Basic test scripts using echo
 ├── multiple_db/            # Script to handle multiple DB backups
-└── cronetab.txt            # 🕒 Crontab example for scheduling backups
+└── crontab.txt            # 🕒 Crontab example for scheduling backups
 ```
 
 ---
@@ -41,7 +41,7 @@ This folder contains modular and reusable bash scripts following best practices 
 | `setup_backup_dirs.sh` | Initializes required backup folders |
 | `laod_env.sh`          | Loads environment variables from `.env.backup` |
 | `.env.backup.example`  | Example environment configuration file |
-| `cronetab.txt`         | Example crontab file for scheduling scripts |
+| `crontab.txt`         | Example crontab file for scheduling scripts |
 
 ---
 
@@ -49,8 +49,8 @@ This folder contains modular and reusable bash scripts following best practices 
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/<your-username>/crone-jobs.git
-   cd crone-jobs/best-practice
+   git clone https://github.com/<your-username>/cron-jobs.git
+   cd cron-jobs/best-practice
    ```
 
 2. **Copy the example `.env` file**
@@ -97,11 +97,11 @@ Open crontab:
 crontab -e
 ```
 
-Paste the contents from `cronetab.txt`, and update `SCRIPT_PATH` to your absolute script directory path.
+Paste the contents from `crontab.txt`, and update `SCRIPT_PATH` to your absolute script directory path.
 
 ```cron
 # Example with SCRIPT_PATH set
-SCRIPT_PATH="/home/user/crone-jobs/best-practice"
+SCRIPT_PATH="/home/user/cron-jobs/best-practice"
 
 0 */3 * * * $SCRIPT_PATH/hourly_backup.sh
 0 0 * * * $SCRIPT_PATH/daily_backup.sh
