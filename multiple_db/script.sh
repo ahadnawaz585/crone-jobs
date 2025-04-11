@@ -1,5 +1,5 @@
 
-BASE_DIR="/home/ubuntu/db_backups"
+BASE_DIR=""
 MAIN_LOG_FILE="${BASE_DIR}/backups.log"
 
 mkdir -p "$BASE_DIR"
@@ -12,8 +12,8 @@ DBs["qwin"]="qwin_upvccloud"
 DBs["windowinnovations"]="windowinnovations_upvccloud"
 DBs["skyline"]="skyline_upvccloud"
 
-DB_USER="appuser"
-DB_PASSWORD='75$UC7#ua@5'
+DB_USER=""
+DB_PASSWORD=''
 DB_HOST="localhost"
 DB_PORT="5432"
 
